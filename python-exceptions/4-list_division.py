@@ -5,7 +5,9 @@ def list_division(my_list_1, my_list_2, list_length):
         try:
             element_1 = my_list_1[i] if i < len(my_list_1) else 0
             element_2 = my_list_2[i] if i < len(my_list_2) else 0
-
+            if not isinstance(element_1, (int, float)) \
+                    or not isinstance(element_2, (int, float)):
+                raise TypeError("wrong type")
             division_result = element_1 / element_2
             result.append(division_result)
         except (TypeError, ValueError):
