@@ -1,4 +1,4 @@
-#!/bin/usr/python3
+#!/usr/bin/python3
 """Square class.
 
 Contains class that defines a square, with initialization of size.
