@@ -10,7 +10,3 @@ class Square:
     """Defines a square."""
 
     pass
-
-
-my_square = Square()
-print(type(my_square))
