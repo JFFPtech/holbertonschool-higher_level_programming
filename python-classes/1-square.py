@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Square class.
 
-This is a empty class that defines a square.
+Contains class that defines a square, with initialization of size.
 
 """
 
