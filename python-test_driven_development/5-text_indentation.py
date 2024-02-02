@@ -1,27 +1,25 @@
 #!/usr/bin/python3
 """
-Text indentation module.
+This is the text_indentation module.
 
-This module contains a function that prints a text with 2 new lines after each of these characters: ., ? and :.
+This module supplies one function, text_indentation().
 """
 
 
 def text_indentation(text):
-    """Print a text with 2 new lines after each of these characters: ., ? and :.
+    """
+    Print a text with 2 new lines after each of these characters: ., ? and :.
 
     Args:
-        text (str): The text to print.
-
-    Returns:
-        None.
-
-    Raises:
-        TypeError: If text is not a string.
-
+        text (str): the text to print.
     """
     if type(text) is not str:
         raise TypeError("text must be a string")
-    text = text.replace(".", ".\n\n")
-    text = text.replace("?", "?\n\n")
-    text = text.replace(":", ":\n\n")
-    print(text, end="")
+
+    line = ""
+    for c in range(len(text)):
+        line += text[c]
+        if text[c] in ".?:":
+            print((line + '\n').lstrip(' '))
+            line = ""
+    print(line.lstrip(' '), end='')
