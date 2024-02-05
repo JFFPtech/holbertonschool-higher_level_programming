@@ -4,7 +4,6 @@ Module for Rectangle class.
 Added a private instance attribute: width and height.
 """
 
-
 class Rectangle:
     """A class representing a rectangle."""
     def __init__(self, height=0, width=0):
