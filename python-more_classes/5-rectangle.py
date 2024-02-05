@@ -5,6 +5,7 @@ Added a private instance attribute: width and height.
 Added area and perimeter methods.
 Added __str__ method, returning a string representation of the rectangle.
 Added __repr__ method, returning a different representation of the rectangle.
+Added __del__ method, printing a message for every deletion of a rectangle.
 """
 
 class Rectangle:
@@ -61,3 +62,7 @@ class Rectangle:
     def __repr__(self):
         """Returns a string representation of the rectangle"""
         return "Rectangle({}, {})".format(self.width, self.height)
+
+    def __del__(self):
+        """Print a message for every deletion of a rectangle"""
+        print("Bye rectangle...")
