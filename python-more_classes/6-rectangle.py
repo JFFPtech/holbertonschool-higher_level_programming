@@ -9,14 +9,15 @@ Added __del__ method, printing a message for every deletion of a rectangle.
 Added a public class attribute: number_of_instances, initialized to 0.
 """
 
+
 class Rectangle:
     """A class representing a rectangle."""
     number_of_instances = 0
 
     def __init__(self, width=0, height=0, area=0, perimeter=0):
-        
+
         """Adds 1 to the number of instances"""
-        type(self).number_of_instances += 1 
+        type(self).number_of_instances += 1
         """The class constructor"""
         self.width = width
         self.height = height
@@ -48,11 +49,11 @@ class Rectangle:
         if value < 0:
             raise ValueError("height must be >= 0")
         self.__height = value
-    
+
     def area(self):
         """area: returns the area of the rectangle"""
         return self.width * self.height
-    
+
     def perimeter(self):
         """perimeter: returns the perimeter of the rectangle"""
         if self.width == 0 or self.height == 0:
