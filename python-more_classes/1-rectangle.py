@@ -6,7 +6,7 @@ Added a private instance attribute: width and height.
 
 class Rectangle:
     """A class representing a rectangle."""
-    def __init__(self, height=0, width=0):
+    def __init__(self, width=0, height=0):
         """The class constructor"""
         self.width = width
         self.height = height
@@ -18,6 +18,7 @@ class Rectangle:
 
     @width.setter
     def width(self, value):
+        """Sets width of rectangle"""
         if type(value) is not int:
             raise TypeError("width must be an integer")
         if value < 0:
@@ -31,6 +32,7 @@ class Rectangle:
 
     @height.setter
     def height(self, value):
+        """height: set height"""
         if type(value) is not int:
             raise TypeError("height must be an integer")
         if value < 0:
