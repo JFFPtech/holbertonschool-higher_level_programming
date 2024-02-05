@@ -4,18 +4,19 @@ Module for Rectangle class.
 Added a private instance attribute: width and height.
 """
 
+
 class Rectangle:
     """A class representing a rectangle."""
     def __init__(self, height=0, width=0):
         """The class constructor"""
         self.width = width
         self.height = height
-    
+
     @property
     def width(self):
         """Gets width of rectangle"""
         return self.__width
-    
+
     @width.setter
     def width(self, value):
         if type(value) is not int:
