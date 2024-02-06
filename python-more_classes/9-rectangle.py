@@ -8,7 +8,7 @@ Added __repr__ method, returning a different representation of the rectangle.
 Added __del__ method, printing a message for every deletion of a rectangle.
 Added a public class attribute: number_of_instances, initialized to 0.
 Added public class attribute: print_symbol, initialized to #
-Added static method bigger_or_equal, returning the biggest rectangle based on the area.
+Added staticmethod bigger_or_equal, returns biggest rectangle based on area.
 """
 
 
@@ -94,6 +94,11 @@ class Rectangle:
         if rect_1.area() >= rect_2.area():
             return rect_1
         return rect_2
+
+    @classmethod
+    def square(cls, size=0):
+        """Returns a new Rectangle instance with width == height == size"""
+        return cls(size, size)
 
     @classmethod
     def __del__(cls):
