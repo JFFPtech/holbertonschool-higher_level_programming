@@ -3,4 +3,5 @@
 
 
 class BaseGeometry:
+    """A class with public instance method area."""
     pass
