@@ -3,7 +3,13 @@
 
 
 class MyList(list):
-    """A class that inherits from a list"""
+    """Custom list type intended to only contain integers."""
+
+
     def print_sorted(self):
-        """Prints the list, but sorted"""
-        print(sorted(self))
+        """Prints MyList lists in ascending order by value. """
+
+
+        sorted_list = self[:]
+        sorted_list.sort()
+        print(sorted_list)
