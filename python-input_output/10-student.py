@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Student to JSON with filter"""
+"""Defines a student"""
 
 
 class Student:
@@ -9,7 +9,7 @@ class Student:
         self.first_name = first_name
         self.last_name = last_name
         self.age = age
-
+            
     def to_json(self, attrs=None):
         """Gets the dictionary representation of a Student"""
         if attrs is None:
