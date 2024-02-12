@@ -86,43 +86,51 @@ class Rectangle(Base):
         return "[Rectangle] ({}) {}/{} - {}/{}".format(
             self.id, self.__x, self.__y, self.__width, self.__height)
 
-    def update(self, *args):
+    def update(self, *args, **kwargs):
         """Updates the rectangle"""
-        for count, arg in enumerate(args):
-            if count == 0:
-                self.id = arg
-            elif count == 1:
-                self.__width = arg
-            elif count == 2:
-                self.__height = arg
-            elif count == 3:
-                self.__x = arg
-            elif count == 4:
-                self.__y = arg
-            else:
-                continue
+        if args:
+            for count, arg in enumerate(args):
+                if count == 0:
+                    self.id = arg
+                elif count == 1:
+                    self.__width = arg
+                elif count == 2:
+                    self.__height = arg
+                elif count == 3:
+                    self.__x = arg
+                elif count == 4:
+                    self.__y = arg
+                else:
+                    continue
+        elif len(kwargs) > 0:
+            for key, value in kwargs.items():
+                if key == "id":
+                    self.id = value
+                elif key == "width":
+                    self.__width = value
+                elif key == "height":
+                    self.__height = value
+                elif key == "x":
+                    self.__x = value
+                elif key == "y":
+                    self.__y = value
+                else:
+                    break
 
 
 if __name__ == "__main__":
 
-    try:
-        Rectangle(10, "2")
-    except Exception as e:
-        print("[{}] {}".format(e.__class__.__name__, e))
+    r1 = Rectangle(10, 10, 10, 10)
+    print(r1)
 
-    try:
-        r = Rectangle(10, 2)
-        r.width = -10
-    except Exception as e:
-        print("[{}] {}".format(e.__class__.__name__, e))
+    r1.update(height=1)
+    print(r1)
 
-    try:
-        r = Rectangle(10, 2)
-        r.x = {}
-    except Exception as e:
-        print("[{}] {}".format(e.__class__.__name__, e))
+    r1.update(width=1, x=2)
+    print(r1)
 
-    try:
-        Rectangle(10, 2, 3, -1)
-    except Exception as e:
-        print("[{}] {}".format(e.__class__.__name__, e))
+    r1.update(y=1, width=2, x=3, id=89)
+    print(r1)
+
+    r1.update(x=1, height=2, y=3, width=4)
+    print(r1)
