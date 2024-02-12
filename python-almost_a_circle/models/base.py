@@ -5,8 +5,13 @@
 
 __nb_objects = 0
 
+class Base:
+  """Base class
+  """
+
 def __init__(self, id=None):
-    """Initializes an instance"""
+    """Initializes the class
+    """
     if id is not None:
         self.id = id
     else:
