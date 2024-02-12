@@ -3,11 +3,13 @@
 """
 
 
+class Base:
+    """Base class
+    """
+
+
 __nb_objects = 0
 
-class Base:
-  """Base class
-  """
 
 def __init__(self, id=None):
     """Initializes the class
