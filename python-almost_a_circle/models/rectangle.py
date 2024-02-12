@@ -33,3 +33,23 @@ class Rectangle(Base):
     def height(self, value):
         """Setter for height"""
         self.__height = value
+
+    @property
+    def x(self):
+        """Getter for x"""
+        return self.__x
+    
+    @x.setter
+    def x(self, value):
+        """Setter for x"""
+        self.__x = value
+    
+    @property
+    def y(self):
+        """Getter for y"""
+        return self.__y
+    
+    @y.setter
+    def y(self, value):
+        """Setter for y"""
+        self.__y = value
