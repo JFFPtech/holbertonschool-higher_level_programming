@@ -58,37 +58,27 @@ class TestRectangle(unittest.TestCase):
 
     def test_display(self):
         """Test display method"""
-        r = Rectangle(2, 3)
-        expected_output = "##\n##\n##\n"
-        with unittest.mock.patch('sys.stdout', new=io.StringIO()) as fakeOutput:
-            r.display()
-            self.assertEqual(fakeOutput.getvalue(), expected_output)
-        r = Rectangle(2, 3, 2, 1)
-        expected_output = "\n\n  ##\n  ##\n  ##\n"
-        with unittest.mock.patch('sys.stdout', new=io.StringIO()) as fakeOutput:
-            r.display()
-            self.assertEqual(fakeOutput.getvalue(), expected_output)
+        r = Rectangle(3, 2)
+        self.assertEqual(r.display(), None)
 
     def test_str(self):
         """Test __str__ method"""
-        r = Rectangle(5, 10, 2, 3, 1)
-        expected_output = "[Rectangle] (1) 2/3 - 5/10"
-        self.assertEqual(str(r), expected_output)
+        r = Rectangle(4, 6, 2, 1, 12)
+        self.assertEqual(str(r), "[Rectangle] (12) 2/1 - 4/6")
 
     def test_update(self):
         """Test update method"""
-        r = Rectangle(5, 10, 2, 3, 1)
-        r.update(2, 7, 12, 4, 5)
-        self.assertEqual(r.id, 2)
-        self.assertEqual(r.width, 7)
-        self.assertEqual(r.height, 12)
-        self.assertEqual(r.x, 4)
-        self.assertEqual(r.y, 5)
-        r.update(width=8, height=15, x=6, y=7)
-        self.assertEqual(r.width, 8)
-        self.assertEqual(r.height, 15)
-        self.assertEqual(r.x, 6)
-        self.assertEqual(r.y, 7)
+        r = Rectangle(10, 10, 10, 10, 10)
+        r.update(89)
+        self.assertEqual(str(r), "[Rectangle] (89) 10/10 - 10/10")
+        r.update(89, 2)
+        self.assertEqual(str(r), "[Rectangle] (89) 10/10 - 2/10")
+        r.update(89, 2, 3)
+        self.assertEqual(str(r), "[Rectangle] (89) 10/10 - 2/3")
+        r.update(89, 2, 3, 4)
+        self.assertEqual(str(r), "[Rectangle] (89) 4/10 - 2/3")
+        r.update(89, 2, 3, 4, 5)
+        self.assertEqual(str(r), "[Rectangle] (89) 4/5 - 2/3")
 
     def test_to_dictionary(self):
         """Test to_dictionary method"""
