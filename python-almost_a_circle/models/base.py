@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-"""Base module with class constructor
-"""
+"""Base module with class constructor"""
 
 
 import json
