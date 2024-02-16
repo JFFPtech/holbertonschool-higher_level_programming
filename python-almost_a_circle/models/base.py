@@ -26,15 +26,16 @@ class Base:
 
     @classmethod
     def save_to_file(cls, list_objs):
-        """Writes the JSON string representation of list_objs to a file"""
-        file_name = "{}.json".format(cls.__name__)
+        """A function that Writes JSON serialization of objects to a file"""
 
-        with open(file_name, "w") as jsonfile:
+        filename = cls.__name__ + ".json"
+        with open(filename, "w") as jsonfile:
             if list_objs is None:
                 jsonfile.write("[]")
+
             else:
-                list_dicts = [obj.to_dictionary() for obj in list_objs]
-                jsonfile.write(cls.to_json_string(list_dicts))
+                list_dicts = [o.to_dictionary() for o in list_objs]
+                jsonfile.write(Base.to_json_string(list_dicts))
 
     def from_json_string(json_string):
         """Returns the list of the JSON string representation json_string"""
@@ -44,24 +45,31 @@ class Base:
 
     @classmethod
     def create(cls, **dictionary):
-        """Returns an instance with all attributes already set"""
-        if cls.__name__ == "Rectangle":
-            new = cls(1, 1)
-        if cls.__name__ == "Square":
-            new = cls(1)
-        new.update(**dictionary)
-        return new
+        """A function that returns a class instantied from a dictionary"""
+
+        if dictionary and dictionary != {}:
+            if cls.__name__ == "Rectangle":
+                new = cls(1, 1)
+
+            else:
+                new = cls(1)
+
+            new.update(**dictionary)
+            return (new)
 
     @classmethod
     def load_from_file(cls):
-        """Returns a list of instances"""
-        file_name = "{}.json".format(cls.__name__)
+        """A function that returns a list of classes instantiated from JSON"""
+
+        filename = str(cls.__name__) + ".json"
         try:
-            with open(file_name, "r") as jsonfile:
-                list_dicts = cls.from_json_string(jsonfile.read())
-            return [cls.create(**d) for d in list_dicts]
-        except FileNotFoundError:
-            return []
+
+            with open(filename, "r") as jsonfile:
+                list_dicts = Base.from_json_string(jsonfile.read())
+                return ([cls.create(**d) for d in list_dicts])
+
+        except IOError:
+            return ([])
 
 
 if __name__ == "__main__":

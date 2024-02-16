@@ -14,7 +14,7 @@ class TestBase(unittest.TestCase):
         self.assertEqual(b3.id, 3)
         b4 = Base(12)
         self.assertEqual(b4.id, 12)
-        b5 = Base
+        b5 = Base()
         self.assertEqual(b5.id, 4)
 
     def test_to_json_string(self):
