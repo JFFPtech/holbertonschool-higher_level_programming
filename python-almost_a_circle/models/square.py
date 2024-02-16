@@ -1,55 +1,65 @@
 #!/usr/bin/python3
-"""Square module with inherited Rectangle class"""
+
+"""Square Model"""
 
 from models.rectangle import Rectangle
 
 
 class Square(Rectangle):
-    """Square class"""
+    """A class that defines a Square model"""
+
     def __init__(self, size, x=0, y=0, id=None):
-        """Initializes the class"""
+        """A function that initializes square instances"""
+
         super().__init__(size, size, x, y, id)
 
     @property
     def size(self):
-        """Returns the size of the square"""
-        return self.width
+        """A function that defines size attribute of a square model"""
+
+        return (self.width)
 
     @size.setter
     def size(self, value):
-        """Sets the size of the square"""
+        """A function that passes size attribute of a square model"""
+
+        if type(value) != int:
+            raise TypeError("width must be an integer")
+
+        if value <= 0:
+            raise ValueError("width must be > 0")
+
         self.width = value
         self.height = value
 
     def update(self, *args, **kwargs):
-        """Updates the class"""
-        if args:
-            for i, arg in enumerate(args):
-                if i == 0:
-                    self.id = arg
-                if i == 1:
-                    self.size = arg
-                if i == 2:
-                    self.x = arg
-                if i == 3:
-                    self.y = arg
+        """A function that assigns key/value argument to square attributes"""
 
-        elif len(kwargs) > 0:
-            for key, value in kwargs.items():
-                if key == "id":
-                    self.id = value
-                if key == "size":
-                    self.size = value
-                if key == "x":
-                    self.x = value
-                if key == "y":
-                    self.y = value
+        if len(args) == 0:
+            for key, val in kwargs.items():
+                self.__setattr__(key, val)
 
-    def to_dictionary(self):
-        """Returns the dictionary representation of the class"""
-        return {"id": self.id, "size": self.size, "x": self.x, "y": self.y}
+            return
+
+        try:
+
+            self.id = args[0]
+            self.size = args[1]
+            self.x = args[2]
+            self.y = args[3]
+
+        except IndexError:
+            pass
 
     def __str__(self):
-        """Returns the string representation of the class"""
-        return "[Square] ({}) {}/{} - {}".format(self.id, self.x,
-                                                 self.y, self.width)
+        """A function that returns string format of a square representation"""
+
+        return ("[{}] ({}) {}/{} - {}".format(type(self).__name__,
+                self.id, self.x, self.y, self.width))
+
+    def to_dictionary(self):
+        """A function that returns dictionary representation of a Square"""
+
+        return ({'id': getattr(self, "id"),
+                'size': getattr(self, "width"),
+                 'x': getattr(self, "x"), 'y': getattr(self, "y")})
