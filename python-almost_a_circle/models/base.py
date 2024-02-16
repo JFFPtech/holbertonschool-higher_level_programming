@@ -70,6 +70,37 @@ class Base:
 
         except IOError:
             return ([])
+        
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """A function that draws rectangles and squares"""
+
+        import turtle
+        import random
+
+        turtle.title("Rectangles and Squares")
+        turtle.bgcolor("black")
+        turtle.hideturtle()
+
+        for r in list_rectangles:
+            turtle.penup()
+            turtle.color("white")
+            turtle.goto(r.x, r.y)
+            turtle.pendown()
+            turtle.forward(r.width)
+            turtle.left(90)
+            turtle.forward(r.height)
+            turtle.left(90)
+            turtle.forward(r.width)
+            turtle.left(90)
+            turtle.forward(r.height)
+            turtle.left(90)
+
+        for s in list_squares:
+            turtle.penup()
+            turtle.color("white")
+            turtle.goto(s.x, s.y)
+            turtle.pendown
 
 
 if __name__ == "__main__":
