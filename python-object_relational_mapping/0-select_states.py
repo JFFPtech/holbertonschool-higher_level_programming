@@ -15,4 +15,10 @@ if __name__ == "__main__":
     c.execute("SELECT * FROM `states`")
     
     # Iterate over the fetched rows and print each state to the console
-    [print(state) for state in c.fetchall()]
+    rows = c.fetchall()
+    for row in rows:
+        print(row)
+    
+    # Close the cursor and database
+    c.close()
+    db.close()
