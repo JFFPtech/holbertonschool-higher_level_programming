@@ -1,30 +1,32 @@
 #!/usr/bin/python3
 """
-Script that lists all states from the databse hbtn_0e_0_usa
+Script that lists all states from the database hbtn_0e_0_usa
 """
 from sys import argv
 import MySQLdb
 
 if __name__ == '__main__':
+    # Extract command-line arguments: username, password, and database name
     u_name = argv[1]
     psw = argv[2]
     base = argv[3]
 
-    # Connecting to MySQL database
-    db = MySQLdb.connect(host="localhost", user=u_name,
-                         passwd=psw, db=base, port=3306)
+    # Connect to the MySQL database
+    db = MySQLdb.connect(host="localhost", user=u_name, passwd=psw, db=base, port=3306)
 
-    # Creating cursor object
+    # Create a cursor object to execute SQL queries
     cur = db.cursor()
 
-    # Executing MySql Query
-    cur.execute("SELECT * FROM states ORDER BY id")
+    # Execute a MySQL query to select distinct rows from the states table, ordered by id
+    cur.execute("SELECT DISTINCT * FROM states ORDER BY id")
 
-    # Obtaining Query Result & prints the result in rows
+    # Fetch all rows returned by the query
     rows = cur.fetchall()
+
+    # Print each row
     for row in rows:
         print(row)
 
-    # Clean Up
+    # Close cursor and database connection
     cur.close()
     db.close()
