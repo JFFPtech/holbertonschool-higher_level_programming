@@ -1,11 +1,18 @@
-#!/usr/bin/python3
-"""Module to list all states from a database"""
-
 import sys
 import MySQLdb
 
 if __name__ == "__main__":
+    # Establish a connection to the MySQL database
     db = MySQLdb.connect(user=sys.argv[1], passwd=sys.argv[2], db=sys.argv[3])
-    c = db.cursor()
-    c.execute("SELECT * FROM `states`")
-    [print(state) for state in c.fetchall()]
+    cursor = db.cursor()
+
+    # Execute the SQL query to retrieve unique states
+    cursor.execute("SELECT DISTINCT * FROM `states` WHERE id IN (4, 5)")
+
+    # Fetch all rows and print each state
+    for state in cursor.fetchall():
+        print(state)
+
+    # Close the cursor and database connection
+    cursor.close()
+    db.close()
