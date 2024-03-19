@@ -1,22 +1,31 @@
 #!/usr/bin/python3
-"""Module to list all states from a database"""
+"""Lists all states starting with 'N' from the database hbtn_0e_0_usa"""
 
 import sys
 import MySQLdb
 
 if __name__ == "__main__":
-    # Establish a connection to the MySQL database using command-line arguments for username, password, and database name
-    db = MySQLdb.connect(user=sys.argv[1], passwd=sys.argv[2], db=sys.argv[3])
-    
-    # Create a cursor object to execute SQL queries
-    c = db.cursor()
-    
-    # Execute an SQL query to select all rows from the `states` table, ordered by `id`
-    c.execute("SELECT * FROM `states` ORDER BY `id`")
-    
-    # Fetch all rows returned by the query and print each row if the name of the state starts with 'N'
-    [print(state) for state in c.fetchall() if state[1][0] == "N"]
+    username = sys.argv[1]
+    password = sys.argv[2]
+    db_name = sys.argv[3]
 
-    # Close cursor and database connection
-    c.close()
+    # Connect to MySQL server
+    db = MySQLdb.connect(host="localhost", port=3306, user=username,
+                         passwd=password, db=db_name)
+
+    # Create a cursor object using cursor() method
+    cursor = db.cursor()
+
+    # Execute SQL query to fetch states starting with 'N'
+    cursor.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id")
+
+    # Fetch all rows using fetchall() method
+    rows = cursor.fetchall()
+
+    # Print the results
+    for row in rows:
+        print(row)
+
+    # Close the cursor and database connection
+    cursor.close()
     db.close()
