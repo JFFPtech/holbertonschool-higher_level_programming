@@ -5,3 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const characterElement = document.getElementById('character');
             characterElement.textContent = data.name;
         })
+        .catch(error => {
+            console.error('Error fetching character:', error);
+        });
+});
