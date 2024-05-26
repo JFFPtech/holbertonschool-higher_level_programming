@@ -8,3 +8,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 listItem.textContent = movie.title;
                 listMovies.appendChild(listItem);
             });
+        })
+        .catch(error => {
+            console.error('Error fetching movies:', error);
+        });
+});
